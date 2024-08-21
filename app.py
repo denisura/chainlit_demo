@@ -2,14 +2,12 @@ import openai
 import os
 import chainlit as cl
 
-api_key = os.getenv("OPENAI_API_KEY")
-
-endpoint_url = "https://api.openai.com/v1"
+api_key = os.getenv("RUNPOD_API_KEY")
+runpod_serverless_id = os.getenv("RUNPOD_SERVERLESS_ID")
+endpoint_url = f"https://api.runpod.ai/v2/{runpod_serverless_id}/openai/v1"
 client = openai.AsyncClient(api_key=api_key, base_url=endpoint_url)
-
-# https://platform.openai.com/docs/models/gpt-4o
 model_kwargs = {
-    "model": "chatgpt-4o-latest",
+    "model": "mistralai/Mistral-7B-Instruct-v0.3",
     "temperature": 0.3,
     "max_tokens": 500
 }
